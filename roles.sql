@@ -1,8 +1,8 @@
 
-CREATE USER admin SUPERUSER;
-CREATE USER employee;
-CREATE USER trainee;
-CREATE USER views_only;
+CREATE ROLE admin SUPERUSER;
+CREATE ROLE employee;
+CREATE ROLE trainee;
+CREATE ROLE views_only;
 
 
 GRANT pg_read_all_data TO employee;
