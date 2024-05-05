@@ -24,8 +24,8 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
 
-IF maxiumValue IS NULL or maxiumValue = 0 THEN UPDATE employee SET salary = salary*(1+(percentValue/100));
-ELSE UPDATE employee SET salary = salary*(1+(percentValue/100)) where employee.salary < maxiumValue;
+IF (maxiumValue IS NULL or maxiumValue = 0) and percentValue IS NOT NULL THEN UPDATE employee SET salary = salary*(1+(percentValue/100));
+ELSIF percentValue IS NOT NULL then UPDATE employee SET salary = salary*(1+(percentValue/100)) where employee.salary < maxiumValue;
 END IF;
 
 END;
