@@ -42,3 +42,5 @@ ALTER TABLE project RENAME TO old_project;
 ALTER TABLE new_project RENAME TO project;
 COMMIT;
 
+ALTER TABLE project_role drop constraint project_role_p_id_fkey; 
+ALTER TABLE project_role add constraint project_role_p_id_fkey FOREIGN KEY (p_id) REFERENCES project(p_id);
