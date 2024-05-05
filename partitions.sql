@@ -20,6 +20,8 @@ ALTER TABLE customer RENAME TO old_customer;
 ALTER TABLE new_customer RENAME TO customer;
 COMMIT;
 
+ALTER TABLE project add constraint project_c_id_fkey FOREIGN KEY (c_id) REFERENCES customer(c_id);
+
 CREATE TABLE new_project (LIKE project INCLUDING ALL)
 	PARTiTION BY RANGE (p_id);
 
@@ -42,3 +44,5 @@ ALTER TABLE project RENAME TO old_project;
 ALTER TABLE new_project RENAME TO project;
 COMMIT;
 
+ALTER TABLE project_role drop constraint project_role_p_id_fkey; 
+ALTER TABLE project_role add constraint project_role_p_id_fkey FOREIGN KEY (p_id) REFERENCES project(p_id);
